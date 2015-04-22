@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="utf-8">
+		<title>D3 Test</title>
+		<link rel="stylesheet" type="text/css" href="css.css" media="all">
+		</style>
+	</head>
+	<body>
+		<H1>D3</H1>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="js/util.js" charset="utf-8"></script>
+
+		<h2>1</h2>
+		<div id="g1"></div>
+		<div id="g2" width=1000 height=800></div>
+		<script type="text/javascript">
+			// Write D3 script here
+			dataset = randSet( 10 );
+			makeGraph( "g1", 1000, 400, dataset );
+
+			var data = [
+				{"sale": "202", "year": "2000"},
+				{"sale": "215","year": "2002"},
+				{"sale": "115","year": "2003"},
+				{"sale": "315","year": "2004"},
+				{"sale": "1115","year": "2005"},
+				{"sale": "415","year": "2006"} ];
+
+			var vis = d3.select("#g2").append("svg").attr("width", WIDTH).attr("height", HEIGHT);
+
+			vis.append("svg:g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+				.call(xAxis);
+			vis.append("svg:g")
+				.attr("class", "y axis")
+				.attr("transform", "translate(" + (MARGINS.left) + ",0)")
+				.call(yAxis);
+			vis.append('svg:path')
+				.attr('d', lineGen(data))
+				.attr('stroke', 'green')
+				.attr('stroke-width', 2)
+				.attr('fill', 'none');
+		</script>
+
+	</body>
+</html>
